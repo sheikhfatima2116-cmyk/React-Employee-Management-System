@@ -63,7 +63,39 @@ const App = () => {
 
   setData(newData);
   handleClear();
+}; 
+  
+const handleUpdate = () => {
+  if (!firstName.trim()) {
+    alert("First Name is required");
+    return;
+  }
+
+  if (!lastName.trim()) {
+    alert("Last Name is required");
+    return;
+  }
+
+  if (age === "" || Number(age) <= 0) {
+    alert("Please enter a valid age");
+    return;
+  }
+
+  const updatedData = data.map((item) =>
+    item.id === id
+      ? {
+          ...item,
+          firstName,
+          lastName,
+          age: Number(age),
+        }
+      : item
+  );
+
+  setData(updatedData);
+  handleClear();
 };
+
   const handleClear = () => {
     setid(0);
       setFirstName('');
